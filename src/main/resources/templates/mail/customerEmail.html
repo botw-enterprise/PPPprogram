@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.customer.title(${refId})}"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.processed.greeting(${user})}"></p>
+        <p th:text="#{email.para1.text}"></p>
+        <ul>
+          <li th:text="#{email.li1.text}"></li>
+          <li th:text="#{email.li2.text}"></li>
+        </ul>
+
+        <p th:text="#{email.para3.text}"></p>
+
+        <p>
+          <span>Sincerely, </span>
+          <br/>
+          <em>Back Office</em>
+        </p>
+        <br/>
+        <br/>
+        <br/>
+    </body>
+</html>

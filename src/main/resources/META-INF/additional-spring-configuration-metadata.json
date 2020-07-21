@@ -1,0 +1,48 @@
+{
+  "properties": [
+    {
+      "name": "application.cors.allowed-origins",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.allowed-origins."
+    },
+    {
+      "name": "application.cors.allowed-methods",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.allowed-methods."
+    },
+    {
+      "name": "application.cors.allowed-headers",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.allowed-headers."
+    },
+    {
+      "name": "application.cors.exposed-headers",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.exposed-headers."
+    },
+    {
+      "name": "application.cors.allow-credentials",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.allow-credentials."
+    },
+    {
+      "name": "application.cors.max-age",
+      "type": "java.lang.String",
+      "description": "Description for application.cors.max-age."
+    },
+    {
+      "name": "application.customerApplicationEmail",
+      "type": "java.lang.String",
+      "description": "Description for application.customerApplicationEmail."
+    },
+    {
+      "name": "application.applicationEmail",
+      "type": "java.lang.String",
+      "description": "Description for application.applicationEmail."
+    },
+    {
+      "name": "application.backOfficeEmail",
+      "type": "java.lang.String",
+      "description": "Description for application.backOfficeEmail."
+    }
+  ] }
