@@ -1,0 +1,73 @@
+.navbar-default {
+  border: 0;
+  background-color: #4c5854;
+  color: #fff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  font: 12px roboto-medium;
+}
+
+
+
+.botw-footer-ppp{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  padding: 40px 60px 40px;
+  font: 12px/20px roboto-regular;
+  color: #6f8a97;
+  background:#f6f8f9;
+  p {
+    text-align: center;
+    margin: 0 auto;
+    .botw-home-ppp{
+    margin: 0px;
+    }
+  }
+}
+.ppp-botw-logo-parent{
+  margin: auto;
+  padding-top: 20px;
+  width: 80%;
+}
+
+.logoImg{
+  height: 33px;
+  display:inline-block;
+  text-align: center;
+}
+.img-responsive{
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+ul {
+  width: 80%;
+  margin: auto;
+  flex-flow: row wrap;
+  display: flex;
+  li {
+    list-style-type: none;
+    margin: 0 1%;
+    :hover {
+     cursor: pointer;
+    }
+  }
+
+  li:last-child {
+    cursor: default;
+    margin-left: auto;
+    p {
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+}
+h1 {
+  font-weight: normal;
+}
+
+a {
+  color: #ffffff;
+}

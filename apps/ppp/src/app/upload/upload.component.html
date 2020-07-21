@@ -1,0 +1,43 @@
+<div>
+  <div class="ppp-upload-wrapper" *ngIf="smallScreen">
+    <mat-chip-list>
+      <span *ngFor="let document of documents">
+        <mat-chip *ngIf="document.docReference === docRelation" >
+          <span (click)="viewPdf(document)">{{document.fileName}}</span>
+        <mat-icon matChipRemove (click)="delete(document.fileId)">cancel</mat-icon>
+      </mat-chip>
+      </span>
+    </mat-chip-list>
+  </div>
+
+  <table cellspacing="0" cellpadding="0" *ngIf="!smallScreen">
+    <thead>
+    <tr>
+      <th>File Name</th>
+      <th>File Size</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let document of documents">
+      <td>{{document.fileName}}</td>
+      <td>{{document.size/1000000 | number: '1.2-2'}}MB</td>
+      <td><mat-icon (click)="delete(document.fileId)">delete_forever</mat-icon></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="ppp-add-new">
+    <button color="primary" class="ppp-upload-add-button" type="button" mat-raised-button (click)="fileUpload.click()">
+      <mat-icon>add</mat-icon>
+      Add
+    </button>
+    <input hidden (change)="onFileSelected($event)"
+           multiple #fileUpload
+           accept="application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain,text/rich,image/*,application/pdf"
+           type="file">
+    <div class="ppp-margin-error">
+      <small>{{errorMessage}}</small>
+    </div>
+  </div>
+</div>

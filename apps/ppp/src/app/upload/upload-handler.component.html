@@ -1,0 +1,65 @@
+<h2>Supporting Documentation</h2>
+
+<ul class="li-ppp-upload">
+    <li>
+        <p>
+          <strong>Please upload the supporting documents used to calculate Average Monthly Payroll,</strong> excluding costs over $100,000 on an
+          annualized basis for each employee and excluding any employees who are not residents of the United States.
+        </p>
+        <P>
+          Supporting payroll documentation must cover the 12-month period from January 1, 2019, and ending December 31, 2019.
+          Exceptions include: seasonal businesses, who may provide payroll documentation for the time period between February 15,
+          2019 and June 30, 2019, and new businesses, who may provide payroll documentation for the time period from January 1,
+          2020 to February 29, 2020. Appropriate documents could be reports from your payroll provider or 2019 IRS Quarterly Payroll
+          Tax Reports (form 940, 941 or 944), as applicable.
+        </P>
+      <p>
+        Payroll reports should include the following information for each W-2 employee located in the United States:
+      </p>
+        <ul>
+            <li>Gross wages (including salary, commissions and tips)</li>
+            <li>Paid time off, Vacation pay, Family medical leave</li>
+            <li>State and local taxes</li>
+            <li>If included in your payroll calculation - documentation showing the total amount of premiums and costs paid for group health care benefits from January 1, 2019, and ending on December 30, 2019</li>
+            <li>If included in your payroll calculation - documentation showing the total amount of retirement plan funding paid by the company during the period starting from January 1, 2019, and ending on December 30, 2019, including under 401K plans, Simple IRAs, SEP IRAs and other retirement plans</li>
+        </ul>
+<!--        <botw-covid-upload [documents]="documents" [docRelation]="1"></botw-covid-upload>-->
+    </li>
+
+    <li *ngIf="question3">
+        <!--    If you answered Yes to Question 3,-->
+        <p>
+          <strong>Since you answered Yes to Question 3,</strong> and the Applicant or any owner of the Applicant is an owner of any other
+          business, or has common management with any other business. Please upload:
+        </p>
+        <ul>
+            <li>A list of affiliate businesses with tax ID number and number of employees (see sba.gov Coronavirus Relief Options
+              Payroll Protection Program Affiliation Rules)</li>
+        </ul>
+
+<!--        <botw-covid-upload [documents]="documents" [docRelation]="2"></botw-covid-upload>-->
+    </li>
+
+    <li *ngIf="question4">
+        <p>
+          <strong>Since you answered Yes to Question 4,</strong> and the Applicant received an SBA Economic Injury Disaster Loan between January
+          31, 2020 and April 3, 2020, and you included an Economic Injury Disaster Loan (EIDL) in the loan amount, please upload
+          documentation for the following:
+        </p>
+        <ul>
+            <li>Loan Amount</li>
+            <li>Loan Use of Proceeds</li>
+            <li>Loan Date</li>
+            <li>Or attach a copy of your EIDL loan agreement or note</li>
+        </ul>
+    </li>
+
+</ul>
+
+
+<div class="ppp-upload-wrapper">
+  <h2>Upload Documents</h2>
+  <p>Please note that there is a limit of 5MB limit per file. PDF format is preferred.</p>
+
+  <botw-covid-upload [documents]="documents" [docRelation]="3"></botw-covid-upload>
+</div>

@@ -1,0 +1,9 @@
+<div class="eka-loading-shade" *ngIf="!formReady">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="eka-covid-form-wrapper" *ngIf="formReady">
+    <botw-enterprise-material-form-io class="eka-material-form-io"
+                                      [component]="renderedFormModel">
+    </botw-enterprise-material-form-io>
+</div>

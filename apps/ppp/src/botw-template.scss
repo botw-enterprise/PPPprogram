@@ -1,0 +1,15 @@
+@import '../../../node_modules/@angular/material/theming';
+@import 'global';
+@include mat-core();
+
+$botw-primary: mat-palette($botw-primary-active, 600);
+// $botw-accent:  mat-palette($mat-grey, 500, 300, 900, A100);
+$botw-success: mat-palette($botw-alert-success, 600, A100);
+$botw-warn:    mat-palette($botw-alert-warn, 600, A100);
+$botw-error:    mat-palette($botw-alert-error, 600);
+$botw-info:    mat-palette($botw-alert-info, 600);
+$botw-alert:    mat-palette($botw-alert-badge, 600);
+
+$botw-theme: mat-light-theme($botw-primary, $botw-error, $botw-warn);
+
+@include angular-material-theme($botw-theme);

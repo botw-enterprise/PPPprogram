@@ -1,0 +1,78 @@
+<div class="eka-care-act-wrapper">
+
+  <div class="ppp-toggle-button">
+    <mat-slide-toggle color="primary" *ngIf="showToggle" (change)="toggleChange($event)">Show Document Upload</mat-slide-toggle>
+  </div>
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Application</ng-template>
+      <botw-ppp-form [partyId]="uuid" (emitter)="processEvent($event)"></botw-ppp-form>
+
+      <p class="covid-error-message" *ngIf="this.hasError">Failed to complete request, please try again. If problem persists please contact support for help.</p>
+      <div class="eka-vid-buttons">
+        <button mat-raised-button (click)="reset()">Reset</button>
+        <button *ngIf="!showUpload" mat-raised-button color="primary" [disabled]="!ready" matStepperNext (click)="submitRequest()">Submit</button>
+        <button *ngIf="showUpload" mat-raised-button color="primary" [disabled]="!ready" matStepperNext (click)="next()">Next</button>
+      </div>
+    </mat-step>
+    <mat-step *ngIf="showUpload">
+      <ng-template matStepLabel>Documents</ng-template>
+      <div class="ppp-upload-wrapper">
+        <botw-ppp-upload-handler [documents]="documents" [partyId]="uuid" [formId]="covidCare"></botw-ppp-upload-handler>
+      </div>
+
+      <p class="covid-error-message" *ngIf="this.hasError">Failed to complete request, please try again. If problem persists please contact support for help.</p>
+
+      <div class="eka-vid-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" [disabled]="!ready" matStepperNext (click)="submitRequest()">Submit</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirmation</ng-template>
+      <div *ngIf="!showUpload">
+        <h1>Please check your inbox for next steps</h1>
+        <h4>Thanks for starting an application for the Paycheck Protection Program. We will send you an email soon with
+          instructions on how to submit payroll verification and complete the application process.</h4>
+
+        <h4 class="completion-covid-status">Your application ID is #{{uuid}}, please save it for future reference.</h4>
+      </div>
+
+      <div *ngIf="showUpload">
+        <h1>You have taken an important first step</h1>
+        <p>We have received your initial application and documentation for {{businessName}}. Your application ID is #{{uuid}}. Please save it for your records.</p>
+        <strong>What happens next?</strong>
+        <p>Please keep an eye on your email inbox. We are currently reviewing a high volume of applications and will rely on email to communicate with you in the coming days. Below is the current process for loan review, credit decision, and loan closing. Please note, these steps may change as we get updated guidance from the SBA.</p>
+        <ul>
+          <li>
+            <span><strong>Initial Application Review</strong></span>
+            <p>Our bank will review your application and supporting documentation. We will reach out via email at the address you provided if any additional information is needed.</p>
+          </li>
+          <li>
+            <p><strong>E-Sign and Complete Application</strong></p>
+            <p>We will notify you by email when your completed application is ready for your signature. We will be using DocuSign for this electronic signature process and will provide instructions.</p>
+          </li>
+          <li>
+            <p><strong>Loan Application Submitted to SBA</strong></p>
+            <p>Our bank will send your completed and signed application to the SBA for review.</p>
+          </li>
+          <li>
+            <p><strong>E-Sign Documents for Confirmed Loan</strong></p>
+            <p>If the SBA approves your loan request, we will notify you by email when your loan documents are ready for your signature. We will also be using DocuSign for this electronic signature process and will provide instructions.</p>
+          </li>
+          <li>
+            <p><strong>Disbursement of Funds</strong></p>
+            <p>Our bank will disburse funds to your business checking account.</p>
+          </li>
+        </ul>
+        <strong>How long will this process take?</strong>
+        <p>We are processing a high volume of applications and do not have an estimated date for processing your application. This process may take anywhere from a few days to a number of weeks.</p>
+        <strong>Where can I get more information?</strong>
+        <p>Because this is an online process, your local branch, banker, or call center representative may not have the most complete information on your application. In addition to our emails, you can refer to our Help for Your Business page, which includes the <a href="https://www.sba.gov/funding-programs/loans/coronavirus-relief-options/paycheck-protection-program-ppp" target="_blank">Paycheck Protection Program</a>. We will be posting regular updates and FAQs.</p>
+        <br/>
+        <p>We appreciate your trust and are here to support you and your employees during this challenging time.</p>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

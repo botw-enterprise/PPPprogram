@@ -1,0 +1,78 @@
+
+.eka-vid-buttons {
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 10px;
+  }
+}
+
+.eka-care-act-wrapper {
+  margin: 1% auto;
+  width: 80%;
+}
+
+.completion-covid-status {
+  font-weight: bold;
+}
+
+.covid-error-message {
+  padding: 10px;
+  margin: auto;
+  background-color: #d8baa5;
+  color: red;
+}
+
+.best-compat {
+  display: flex;
+  justify-content: flex-start;
+  p {
+    color: #058659;
+    font-weight: bold;
+  }
+}
+
+.ppp-upload-wrapper {
+  display: flex;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
+
+::ng-deep {
+  mat-form-field {
+    width: 100% !important;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0 !important;
+  }
+}
+
+.warn-message {
+  font-weight: bold;
+  color: #058659;
+}
+
+.mat-raised-button {
+  border-radius: 0;
+}
+
+h1, h4 {
+  font-weight: normal;
+}
+
+.ppp-toggle-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+li {
+  margin-top: 20px;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
