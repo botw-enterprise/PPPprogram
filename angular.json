@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "projects": {
+    "ppp": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ppp",
+      "sourceRoot": "apps/ppp/src",
+      "prefix": "ppp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "build/resources/main/static/",
+            "index": "apps/ppp/src/index.html",
+            "main": "apps/ppp/src/main.ts",
+            "polyfills": "apps/ppp/src/polyfills.ts",
+            "tsConfig": "apps/ppp/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/ppp/src/favicon.ico", "apps/ppp/src/assets"],
+            "styles": [
+              "apps/ppp/src/styles.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ppp/src/environments/environment.ts",
+                  "with": "apps/ppp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ppp:build",
+            "proxyConfig": "apps/ppp/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ppp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ppp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ppp/tsconfig.app.json",
+              "apps/ppp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ppp/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ppp/jest.config.js",
+            "tsConfig": "apps/ppp/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/ppp/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ppp-e2e": {
+      "root": "apps/ppp-e2e",
+      "sourceRoot": "apps/ppp-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ppp-e2e/cypress.json",
+            "tsConfig": "apps/ppp-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ppp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ppp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ppp-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ppp-e2e/**"]
+          }
+        }
+      }
+    },
+    "botw-material-form-io": {
+      "projectType": "library",
+      "root": "libs/botw-material-form-io",
+      "sourceRoot": "libs/botw-material-form-io/src",
+      "prefix": "ppp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/botw-material-form-io/tsconfig.lib.json",
+              "libs/botw-material-form-io/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/botw-material-form-io/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/botw-material-form-io/jest.config.js",
+            "tsConfig": "libs/botw-material-form-io/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/botw-material-form-io/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "ppp"
+}
