@@ -1,0 +1,16 @@
+<div [id]="component.key" class="botw-radio-material" [ngClass]="component.hidden ? 'invisible' : ''"
+                 *ngIf="component.type === 'radio' && validateCondition(component?.conditional?.json)">
+  <div id="rLabel-{{component.key}}" class="botw-radio-align">
+    <span *ngIf="component.number">{{component.number}}.</span>
+    <span class="botw-mat-formio-radio-label">{{component.label}}</span>
+  </div>
+  <mat-radio-group id="rGroup-{{component.key}}"
+                   class="botw-radio-align-buttons" color="primary"
+                   aria-label="Select an option"
+                   [formControl]="component.controller">
+    <mat-radio-button *ngFor="let value of component.values" [value]="value['value']">{{value['label']}}</mat-radio-button>
+  </mat-radio-group>
+  <mat-error id="rRequired-{{component.key}}" *ngIf="component.controller.hasError('required') && !component.controller.untouched">
+    This field is <strong>required</strong>
+  </mat-error>
+</div>

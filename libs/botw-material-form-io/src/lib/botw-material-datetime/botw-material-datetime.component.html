@@ -1,0 +1,17 @@
+<mat-form-field [id]="component.key" [ngClass]="component.hidden ? 'invisible' : ''" appearance="fill"
+                *ngIf="component.type === 'datetime' &&
+                  validateCondition(component?.conditional?.json)">
+  <mat-label>{{component.label}}</mat-label>
+  <input id="dInput-{{component.key}}" [formControl]="component.controller"
+         [matDatepickerFilter]="component.dateFilter"
+         (dateChange)="dateChange($event, component.key)"
+         matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+  <mat-datepicker #picker ></mat-datepicker>
+  <mat-error id="dRequired-{{component.key}}" *ngIf="component.controller.hasError('required')">
+    This field is <strong>required</strong>
+  </mat-error>
+  <mat-error id="dCustomError-{{component.key}}" *ngIf="component.controller.hasError('matDatepickerFilter')">
+    {{component.customError}}
+  </mat-error>
+</mat-form-field>

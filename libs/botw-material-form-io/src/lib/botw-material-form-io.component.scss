@@ -1,0 +1,30 @@
+.eka-components-card {
+  margin-bottom: 21px;
+  //display: flex;
+  //flex-wrap: wrap;
+  //flex-basis: 100%;
+  padding: 0;
+}
+
+.eka-components {
+  margin: auto 5px;
+
+  mat-form-field {
+
+  }
+}
+
+.invisible{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.eka-components-card-child {
+  width: 100%;
+}
+
+mat-card-subtitle {
+  width: 100%;
+}

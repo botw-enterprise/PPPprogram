@@ -1,0 +1,13 @@
+<mat-form-field [id]="component.key"  [ngClass]="component.hidden ? 'invisible' : ''"
+                 *ngIf="component.type === 'select' && validateCondition(component?.conditional?.json)">
+  <mat-label id="sLabel-{{component.key}}">{{component.label}}</mat-label>
+  <mat-select id="sSelect-{{component.key}}"  [formControl]="component.controller" [multiple]="component.multiple">
+    <mat-option *ngFor="let value of component.urlData; i as index"  [value]="value[component.valueProperty]">
+      {{value[component.labelProperty]}}
+    </mat-option>
+  </mat-select>
+  <mat-error id="sRequired-{{component.key}}" *ngIf="component.controller.hasError('required')">
+    This field is <strong>required</strong>
+  </mat-error>
+  <mat-hint id="sHint-{{component.key}}" *ngIf="component.help">{{component.help}}</mat-hint>
+</mat-form-field>

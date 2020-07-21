@@ -1,0 +1,86 @@
+<mat-card class="eka-components-card mat-elevation-z0"
+          [ngClass]="component.hidden ? 'invisible' : ''"
+          *ngIf="component.type === 'datagrid' &&
+                  validateCondition(component?.conditional?.json)">
+  <mat-card-subtitle>{{component.label}}</mat-card-subtitle>
+  <div [formGroup]="botwMaterialFormIoService.partyData.get(component?.refParty).get(component?._id)">
+    <div [formArrayName]="component.key">
+      <div class="eka-components-grid-wrapper" *ngFor="let componentController of getControls(component?.controller); index as i">
+        <div [formGroupName]="i">
+<!--          <mat-checkbox *ngIf="i > 0" color="primary" class="eka-populate-select"-->
+<!--                        (change)="onSelection(component, i, $event)">Same as above</mat-checkbox>-->
+          <div *ngFor="let subComponent of component.components">
+            <mat-form-field [ngClass]="subComponent.hidden ? 'invisible' : ''"
+                            *ngIf="(subComponent.type === 'textfield' || subComponent.type === 'number') &&
+                  validateGridCondition(subComponent?.conditional?.json, component.key, i)">
+              <mat-label>{{subComponent.label}}</mat-label>
+              <input matInput [formControlName]="subComponent.key" #inp [type]="subComponent.type">
+<!--              <button mat-button *ngIf="inp.value" matSuffix mat-icon-button aria-label="Clear"-->
+<!--                      (click)="componentController.get(subComponent.key).setValue('')">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+              <span matPrefix *ngIf="subComponent.prefix">{{component.prefix}} &nbsp;</span>
+              <span matSuffix *ngIf="subComponent.suffix">{{component.suffix}}</span>
+              <mat-error *ngIf="componentController.get(subComponent.key).hasError('required')">
+                This field is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="componentController.get(subComponent.key).hasError('pattern')">
+                {{subComponent.validate?.customMessage}}.
+              </mat-error>
+              <mat-hint *ngIf="subComponent?.help">{{subComponent.help}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field  [ngClass]="subComponent.hidden ? 'invisible' : ''"
+                             *ngIf="subComponent.type === 'select' &&
+                             validateGridCondition(subComponent?.conditional?.json, component.key, i)">
+              <mat-label>{{subComponent.label}}</mat-label>
+              <mat-select [formControlName]="subComponent.key" [multiple]="subComponent.multiple">
+                <mat-option *ngFor="let value of subComponent.urlData" [value]="value[subComponent.valueProperty]">
+                  {{value[subComponent.labelProperty]}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field [ngClass]="subComponent.hidden ? 'invisible' : ''"
+                            *ngIf="subComponent.type === 'datetime' &&
+                  validateGridCondition(subComponent?.conditional?.json, component.key, i)">
+              <mat-label>{{subComponent.label}}</mat-label>
+              <input [formControlName]="subComponent.key"
+                     [matDatepickerFilter]="subComponent.dateFilter"
+                     (dateChange)="dateChange($event, component.key, subComponent.key, i)"
+                     matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+              <mat-datepicker #picker ></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field  [ngClass]="subComponent.hidden ? 'invisible' : ''"
+                             *ngIf="subComponent.type === 'radio' &&
+                             validateGridCondition(subComponent?.conditional?.json, component.key, i)">
+              <mat-label>{{subComponent.label}}</mat-label>
+              <mat-radio-group aria-label="Select an option" [formControlName]="subComponent.key">
+                <mat-radio-button *ngFor="let value of subComponent.values" [value]="value['value']">{{value['label']}}</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="subComponent.controller.hasError('required')">
+                This field is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field  [ngClass]="subComponent.hidden ? 'invisible' : ''"
+                             *ngIf="subComponent.type === 'checkbox' &&
+                             validateCondition(subComponent?.conditional?.json)">
+              <mat-checkbox [formControlName]="subComponent.key">{{subComponent.label}}</mat-checkbox>
+              <mat-error *ngIf="subComponent.controller.hasError('required')">
+                This field is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="eka-components-grid-inner-button">
+          <button mat-raised-button color="warn" *ngIf="i > 0" (click)="removeEntry(component, i)">Remove</button>
+        </div>
+      </div>
+        <button *ngIf="component.validate?.maxLength ? getControls(component?.controller).length < component.validate?.maxLength : true"
+                mat-raised-button color="primary" (click)="newGrid(component)">Add New</button>
+    </div>
+  </div>
+</mat-card>

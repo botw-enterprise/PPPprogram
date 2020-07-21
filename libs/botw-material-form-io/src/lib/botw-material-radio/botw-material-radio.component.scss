@@ -1,0 +1,32 @@
+mat-form-field {
+  min-width: 700px;
+}
+
+.invisible {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.botw-radio-material {
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+::ng-deep {
+  .mat-radio-button {
+    margin: 5px 20px;
+  }
+}
+
+.botw-radio-align {
+  display: flex;
+  span {
+    margin: 0 5px;
+  }
+}
+
+.botw-radio-align-buttons {
+  margin: 0 10px;
+}

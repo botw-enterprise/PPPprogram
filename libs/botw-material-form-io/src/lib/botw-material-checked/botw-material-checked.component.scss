@@ -1,0 +1,21 @@
+mat-form-field {
+  min-width: 700px;
+}
+
+.invisible {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.botw-checkbox-margin {
+  display: flex;
+  margin: 5px;
+}
+
+::ng-deep {
+  mat-label {
+    margin-left: 5px;
+  }
+}

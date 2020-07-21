@@ -1,0 +1,10 @@
+<div [id]="component.key" class="botw-checkbox-material" [ngClass]="component.hidden ? 'invisible' : ''"
+     *ngIf="component.type === 'checkbox' && validateCondition(component?.conditional?.json)">
+  <div class="botw-checkbox-margin">
+    <mat-checkbox id="cCheckbox-{{component.key}}" [formControl]="component.controller" color="primary"></mat-checkbox>
+    <mat-label id="cLabel-{{component.key}}">{{component.label}}</mat-label>
+  </div>
+  <mat-error id="cRequired-{{component.key}}" *ngIf="component.controller.hasError('required') && !component.controller.untouched">
+    This field is <strong>required</strong>
+  </mat-error>
+</div>

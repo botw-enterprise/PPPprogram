@@ -1,0 +1,39 @@
+<mat-card class="eka-components-card mat-elevation-z0"  [ngClass]="component.hidden ? 'invisible' : ''"
+          *ngIf="(component?.type === 'panel' ||
+                    component?.type === 'form') &&
+                    validateCondition(component?.conditional?.json)">
+  <mat-card-subtitle *ngIf="component.htmlTitle" [innerHTML]="component.htmlTitle"></mat-card-subtitle>
+  <mat-card-subtitle *ngIf="!component.htmlTitle">{{component.title ? component.title : component.label}}</mat-card-subtitle>
+  <p *ngIf="component.tooltip">{{component.tooltip}}</p>
+
+  <div class="eka-components" [ngClass]="subComponent.type === 'panel' ? 'eka-components-card' : ''"
+       *ngFor="let subComponent of component.components">
+
+    <botw-enterprise-mat-select [component]="subComponent" ></botw-enterprise-mat-select>
+
+    <botw-enterprise-mat-textfield [component]="subComponent"></botw-enterprise-mat-textfield>
+
+    <botw-enterprise-mat-grid [component]="subComponent"></botw-enterprise-mat-grid>
+
+    <!--    <mat-card-content *ngIf="subComponent.type === 'textfield'">-->
+    <!--      <mat-form-field appearance="fill" >-->
+    <!--        <mat-label>{{subComponent.label}}</mat-label>-->
+    <!--        <input matInput >-->
+    <!--      </mat-form-field>-->
+    <!--    </mat-card-content>-->
+
+    <botw-enterprise-mat-datetime [component]="subComponent"></botw-enterprise-mat-datetime>
+
+    <botw-enterprise-mat-html-element [component]="subComponent"></botw-enterprise-mat-html-element>
+
+    <botw-enterprise-mat-radio [component]="subComponent"></botw-enterprise-mat-radio>
+
+    <botw-enterprise-mat-checked [component]="subComponent"></botw-enterprise-mat-checked>
+
+    <botw-enterprise-mat-textarea [component]="subComponent"></botw-enterprise-mat-textarea>
+
+    <botw-enterprise-material-form-io class="eka-components-card-child" *ngIf="subComponent?.components"
+                                      [component]="subComponent">
+    </botw-enterprise-material-form-io>
+  </div>
+</mat-card>

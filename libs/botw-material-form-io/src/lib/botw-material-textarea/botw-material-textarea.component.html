@@ -1,0 +1,10 @@
+<mat-form-field [id]="component.key"  [ngClass]="component.hidden ? 'invisible' : ''"
+                *ngIf="(component.type === 'textarea') &&
+                  validateCondition(component?.conditional?.json)">
+  <mat-label id="taLabel-{{component.key}}">{{component.label}}</mat-label>
+  <textarea id= "ta-{{component.key}}"  matInput [formControl]="component.controller" (focusout)="onLeave($event)"></textarea>
+  <mat-error id="taRequired-{{component.key}}" *ngIf="component.controller.hasError('required')">
+    This field is <strong>required</strong>
+  </mat-error>
+  <mat-hint id="taHint-{{component.key}}" align="end" *ngIf="component.help">{{component.help}}</mat-hint>
+</mat-form-field>

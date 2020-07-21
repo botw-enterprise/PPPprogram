@@ -1,0 +1,37 @@
+<mat-form-field [id]="component.key" [ngClass]="component.hidden ? 'invisible' : ''"
+                *ngIf="(component.type === 'textfield' || component.type === 'number') &&
+                  validateCondition(component?.conditional?.json)">
+  <mat-label id="tfLabel-{{component.key}}" >{{component.label}}</mat-label>
+<!--  <mat-icon matPrefix *ngIf="component.prefix && component.prefix === '$'">{{component.prefix === '$' ? 'attach_money' : ''}}</mat-icon>-->
+  <span matPrefix *ngIf="component.prefix">{{component.prefix}}</span>
+<!--  <span matSuffix *ngIf="component.suffix">{{component.suffix}} &nbsp;</span>-->
+  <input id="tfInput-{{component.key}}"  [type]="component.type" [matTooltip]="component.tooltip" matInput
+         (input)="updateNumber($event)" [formControl]="component.controller" #inp (focusout)="appendSuffix(component.suffix)">
+
+<!--  <button mat-button *ngIf="inp.value" matSuffix mat-icon-button aria-label="Clear"-->
+<!--          (click)="component.controller.setValue('')">-->
+<!--    <mat-icon>close</mat-icon>-->
+<!--  </button>-->
+  <mat-error id="tfRequired-{{component.key}}" *ngIf="component.controller.hasError('required')">
+    This field is <strong>required</strong>
+  </mat-error>
+  <mat-error id="tfMaxLength-{{component.key}}" *ngIf="component.controller.hasError('maxlength')">
+    This field required maximum <strong>{{component.validate.maxLength}}</strong> letters.
+  </mat-error>
+  <mat-error id="tfMinLength-{{component.key}}" *ngIf="component.controller.hasError('minlength')">
+    This field required minimum <strong>{{component.validate.minLength}}</strong> letters.
+  </mat-error>
+  <mat-error id="tfPattern-{{component.key}}" *ngIf="component.controller.hasError('pattern')">
+    {{component.validate?.customMessage}}
+  </mat-error>
+  <mat-error id="tfCustom-{{component.key}}" *ngIf="component.controller.hasError('customError')">
+    {{component.validate?.customMessage}}
+  </mat-error>
+  <mat-hint id="tfHint-{{component.key}}" *ngIf="component.help">{{component.help}}</mat-hint>
+<!--  <mat-hint align="end" *ngIf="component.validate.maxLength">-->
+<!--    {{component.controller.value.length}} / {{component.validate?.maxLength}}-->
+<!--  </mat-hint>-->
+<!--  <mat-hint align="end" *ngIf="component.validate.minLength">-->
+<!--    {{component.controller.value.length}} / {{component.validate?.minLength}}-->
+<!--  </mat-hint>-->
+</mat-form-field>

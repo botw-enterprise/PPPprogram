@@ -1,0 +1,5 @@
+<div [id]="component.key" [ngClass]="component.hidden ? 'invisible' : ''"
+                *ngIf="(component.type === 'htmlelement') &&
+                  validateCondition(component?.conditional?.json)">
+  <p [innerHTML]="component.content"></p>
+</div>
